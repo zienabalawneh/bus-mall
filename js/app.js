@@ -55,7 +55,7 @@ new Prodect('shark', './img/shark.jpg');
 new Prodect('sweep', './img/sweep.png');
 new Prodect('tauntaun', './img/tauntaun.jpg');
 new Prodect('unicorn', './img/unicorn.jpg');
-new Prodect('usb', '../img/usb.gif');
+new Prodect('usb', './img/usb.gif');
 new Prodect('water-can', './img/water-can.jpg');
 new Prodect('wine-glass', './img/wine-glass.jpg');
 //console.log(Prodect);
