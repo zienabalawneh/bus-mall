@@ -38,26 +38,26 @@ Prodect.allProdect = [];
 
 
 // instantces
-new Prodect('bag', '../img/bag.jpg');
-new Prodect('banana', '../img/banana.jpg');
-new Prodect('bathroom', '../img/bathroom.jpg');
-new Prodect('boots', '../img/boots.jpg');
-new Prodect('breakfast', '../img/breakfast.jpg');
-new Prodect('bubblegum', '../img/bubblegum.jpg');
-new Prodect('chair', '../img/chair.jpg');
-new Prodect('cthulhu', '../img/cthulhu.jpg');
-new Prodect('dog-duck', '../img/dog-duck.jpg');
-new Prodect('dragon', '../img/dragon.jpg');
-new Prodect('pen', '../img/pen.jpg');
-new Prodect('pet-sweep', '../img/pet-sweep.jpg');
-new Prodect('scissors', '../img/scissors.jpg');
-new Prodect('shark', '../img/shark.jpg');
-new Prodect('sweep', '../img/sweep.png');
-new Prodect('tauntaun', '../img/tauntaun.jpg');
-new Prodect('unicorn', '../img/unicorn.jpg');
+new Prodect('bag', './img/bag.jpg');
+new Prodect('banana', './img/banana.jpg');
+new Prodect('bathroom', './img/bathroom.jpg');
+new Prodect('boots', './img/boots.jpg');
+new Prodect('breakfast', './img/breakfast.jpg');
+new Prodect('bubblegum', './img/bubblegum.jpg');
+new Prodect('chair', './img/chair.jpg');
+new Prodect('cthulhu', './img/cthulhu.jpg');
+new Prodect('dog-duck', './img/dog-duck.jpg');
+new Prodect('dragon', './img/dragon.jpg');
+new Prodect('pen', './img/pen.jpg');
+new Prodect('pet-sweep', './img/pet-sweep.jpg');
+new Prodect('scissors', './img/scissors.jpg');
+new Prodect('shark', './img/shark.jpg');
+new Prodect('sweep', './img/sweep.png');
+new Prodect('tauntaun', './img/tauntaun.jpg');
+new Prodect('unicorn', './img/unicorn.jpg');
 new Prodect('usb', '../img/usb.gif');
-new Prodect('water-can', '../img/water-can.jpg');
-new Prodect('wine-glass', '../img/wine-glass.jpg');
+new Prodect('water-can', './img/water-can.jpg');
+new Prodect('wine-glass', './img/wine-glass.jpg');
 //console.log(Prodect);
 
 
@@ -129,6 +129,7 @@ function handleUserClick(event) {
         Prodect.allProdect[leftImageIndex].shown++;
         Prodect.allProdect[centerImageIndex].shown++;
         Prodect.allProdect[rightImageIndex].shown++;
+
 
 
         //console.log(Prodect.allProdect);
