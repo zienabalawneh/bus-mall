@@ -7,12 +7,12 @@ let rightImageElement = document.getElementById('right-image');
 
 
 
-let button = document.getElementById('button');
+/*let button = document.getElementById('button');
 //to hide button
-button.style.display = 'none';
+button.style.display = 'none';*/
 
 
-//
+
 let leftImageIndex;
 let centerImageIndex;
 let rightImageIndex;
@@ -22,7 +22,9 @@ let rightImageIndex;
 let maxClick = 25;
 let userClickCounter = 0;
 
-
+let namesArr = [];
+let votesArr = [];
+let shownArr = [];
 
 
 // Pascal
@@ -31,7 +33,9 @@ function Prodect(name, source) {
     this.source = source;
     this.votes = 0;
     this.shown = 0;
-    Prodect.allProdect.push(this)
+
+    Prodect.allProdect.push(this);
+    namesArr.push(this.name);
 }
 
 Prodect.allProdect = [];
@@ -67,22 +71,29 @@ function getRandomIndex() {
 }
 
 
+
+
+var shownImage = [];
+
 function renderImages() {
 
     leftImageIndex = getRandomIndex();
     centerImageIndex = getRandomIndex();
     rightImageIndex = getRandomIndex();
 
-    while (leftImageIndex === rightImageIndex || leftImageIndex === centerImageIndex || rightImageIndex === centerImageIndex) {
-        //leftImageIndex=getRandomIndex();
+
+    while (leftImageIndex === rightImageIndex || leftImageIndex === centerImageIndex || rightImageIndex === centerImageIndex || shownImage.includes(leftImageIndex) || shownImage.includes(centerImageIndex) || shownImage.includes(rightImageIndex)) {
+        leftImageIndex = getRandomIndex();
         centerImageIndex = getRandomIndex();
         rightImageIndex = getRandomIndex();
+
+
     }
 
 
     leftImageElement.src = Prodect.allProdect[leftImageIndex].source;
 
-     Prodect.allProdect[leftImageIndex].shown++;
+    Prodect.allProdect[leftImageIndex].shown++;
 
     centerImageElement.src = Prodect.allProdect[centerImageIndex].source;
 
@@ -92,10 +103,17 @@ function renderImages() {
 
     Prodect.allProdect[rightImageIndex].shown++;
 
+
+    // arrIndex.splice(0,3);
+
+
+    shownImage[0] = leftImageIndex;
+    shownImage[1] = centerImageIndex;
+    shownImage[2] = rightImageIndex;
+
+    console.log("the end of function ", shownImage);
+
 }
-
-
-
 
 
 renderImages();
@@ -103,10 +121,7 @@ renderImages();
 
 
 // when uesr click
-/*
-  leftImageElement.addEventListener('click',handleUserClick);
-  centerImageElement.addEventListener('click',handleUserClick);
-  rightImageElement.addEventListener('click',handleUserClick);*/
+
 partShowUser.addEventListener('click', handleUserClick);
 
 
@@ -118,7 +133,6 @@ function handleUserClick(event) {
 
     // add to attempts
     userClickCounter++;
-
     //console.log(userClickCounter);
 
     if (userClickCounter <= maxClick) {
@@ -129,66 +143,110 @@ function handleUserClick(event) {
         } else if (event.target.id === 'center-image') {
             Prodect.allProdect[centerImageIndex].votes++;
 
-        } else if (event.target.id === 'right-image'){
+        } else if (event.target.id === 'right-image') {
             Prodect.allProdect[rightImageIndex].votes++;
 
-        }else{
+        } else {
 
 
             alert("Please click on the photos");
             userClickCounter--;
         }
 
-
-      
-
-
         //console.log(Prodect.allProdect);
         renderImages();
-
-
     } else {
-        //  remove event listener
 
-        /* 
-         leftImageElement.removeEventListener('click',handleUserClick);
-         centerImageElement.removeEventListener('click',handleUserClick);
-         rightImageElement.removeEventListener('click',handleUserClick);*/
+        //  remove event listener
         partShowUser.removeEventListener('click', handleUserClick);
 
+        for (let i = 0; i < Prodect.allProdect.length; i++) {
+            votesArr.push(Prodect.allProdect[i].votes);
+            shownArr.push(Prodect.allProdect[i].shown);
+
+        }
+
+        chart();
+
         //to apper button
-        button.style.display = 'block';
+        /*  button.style.display = 'block';
+  
+          button.addEventListener('click', handelButton);
+  
+  
+  
+          function handelButton() {
+  
+              let list = document.getElementById('results-list');
+  
+              let prodectResult;
+  
+              for (let i = 0; i < Prodect.allProdect.length; i++) {
+                  prodectResult = document.createElement('li');
+                  list.appendChild(prodectResult);
+  
+                  prodectResult.textContent = `${Prodect.allProdect[i].name} had ${Prodect.allProdect[i].votes}, and was seen ${Prodect.allProdect[i].shown} times.`;
+              }
+  
+  
+              button.removeEventListener('click', handelButton);
+  
+          } //end fun*/
 
-        button.addEventListener('click', handelButton);
 
-
-
-        function handelButton() {
-
-            let list = document.getElementById('results-list');
-
-            let prodectResult;
-
-            for (let i = 0; i < Prodect.allProdect.length; i++) {
-                prodectResult = document.createElement('li');
-                list.appendChild(prodectResult);
-
-                prodectResult.textContent = `${Prodect.allProdect[i].name} had ${Prodect.allProdect[i].votes}, and was seen ${Prodect.allProdect[i].shown} times.`;
-            }
-
-
-            button.removeEventListener('click', handelButton);
-
-        } //end fun
     }//end if else
 
 
+}
 
 
+// chart.js
+function chart() {
+    let ctx = document.getElementById('myChart').getContext('2d');
 
+    let chart = new Chart(ctx, {
+        // what type is the chart
+        type: 'bar',
 
+        //  the data for showing
+        data: {
+            //  for the names
+            labels: namesArr,
 
+            datasets: [
+                {
+                    label: 'Prodect votes',
+                    data: votesArr,
+                    backgroundColor: [
+                        '#45526c',
+                    ],
 
+                    borderWidth: 1
+                },
 
+                {
+                    label: 'Prodect shown',
+                    data: shownArr,
+                    backgroundColor: [
+                        '#f8a488',
+                    ],
+
+                    borderWidth: 1
+                }
+
+            ]
+        },
+        options: {
+
+            legend: {
+                labels: {
+                    color: 'black'
+
+                    // This more specific font property overrides the global property
+
+                }
+            }
+        }
+    });
 
 }

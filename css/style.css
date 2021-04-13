@@ -4,7 +4,7 @@
 
 body{
 
-background-color: #45526c;
+background-color:rgb(255, 228, 233);
 
 
 }
@@ -59,7 +59,6 @@ font-size: 25px;
 border-radius: 10px;
 position: relative;
 
-
 }
 
 
@@ -73,6 +72,7 @@ margin-left: 615px;
 
 
 footer p{
+ color: #45526c;
  margin-top: 132px;
  background-color:#f8a488;
  clear: both;

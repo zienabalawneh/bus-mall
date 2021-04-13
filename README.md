@@ -14,9 +14,11 @@
 
 + One of the sites that helped me with my project:
 
-  1.[w3schools](https://www.w3schools.com/) 
+  1. [w3schools](https://www.w3schools.com/) 
 
+  2. [Chart.js](https://www.chartjs.org/docs/latest/getting-started/)
 
+  3. [love2dev](https://love2dev.com/blog/javascript-remove-from-array/)
 
 
 + How did this go, overall? Well most of the things are clear
