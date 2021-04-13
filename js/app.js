@@ -81,8 +81,16 @@ function renderImages() {
 
 
     leftImageElement.src = Prodect.allProdect[leftImageIndex].source;
+
+     Prodect.allProdect[leftImageIndex].shown++;
+
     centerImageElement.src = Prodect.allProdect[centerImageIndex].source;
+
+    Prodect.allProdect[centerImageIndex].shown++;
+
     rightImageElement.src = Prodect.allProdect[rightImageIndex].source;
+
+    Prodect.allProdect[rightImageIndex].shown++;
 
 }
 
@@ -121,15 +129,18 @@ function handleUserClick(event) {
         } else if (event.target.id === 'center-image') {
             Prodect.allProdect[centerImageIndex].votes++;
 
-        } else {
+        } else if (event.target.id === 'right-image'){
             Prodect.allProdect[rightImageIndex].votes++;
 
+        }else{
+
+
+            alert("Please click on the photos");
+            userClickCounter--;
         }
 
-        Prodect.allProdect[leftImageIndex].shown++;
-        Prodect.allProdect[centerImageIndex].shown++;
-        Prodect.allProdect[rightImageIndex].shown++;
 
+      
 
 
         //console.log(Prodect.allProdect);
