@@ -72,8 +72,8 @@ function getRandomIndex() {
 
 
 
-
 var shownImage = [];
+
 
 function renderImages() {
 
@@ -81,6 +81,7 @@ function renderImages() {
     centerImageIndex = getRandomIndex();
     rightImageIndex = getRandomIndex();
 
+    //console.log("Before ", shownImage);
 
     while (leftImageIndex === rightImageIndex || leftImageIndex === centerImageIndex || rightImageIndex === centerImageIndex || shownImage.includes(leftImageIndex) || shownImage.includes(centerImageIndex) || shownImage.includes(rightImageIndex)) {
         leftImageIndex = getRandomIndex();
@@ -111,7 +112,7 @@ function renderImages() {
     shownImage[1] = centerImageIndex;
     shownImage[2] = rightImageIndex;
 
-    console.log("the end of function ", shownImage);
+    //console.log("After ", shownImage);
 
 }
 
@@ -148,15 +149,21 @@ function handleUserClick(event) {
 
         } else {
 
-
             alert("Please click on the photos");
             userClickCounter--;
         }
 
+
         //console.log(Prodect.allProdect);
         renderImages();
+
+
+
+
     } else {
 
+
+        setDataProducts();
         //  remove event listener
         partShowUser.removeEventListener('click', handleUserClick);
 
@@ -165,6 +172,7 @@ function handleUserClick(event) {
             shownArr.push(Prodect.allProdect[i].shown);
 
         }
+
 
         chart();
 
@@ -250,3 +258,41 @@ function chart() {
     });
 
 }
+
+
+function setDataProducts() {
+    //console.log(JSON);
+    //convert Prodect.allProdect to string
+    let arrayStringProducts = JSON.stringify(Prodect.allProdect);
+
+    //set localStorage
+    //  localStorage.setItem('Key','value');
+    localStorage.setItem('Products', arrayStringProducts);
+
+
+}
+
+
+
+
+function getDataProducts() {
+    // get the data from the local storage
+    //localStorage.getItem('key');
+    let data = localStorage.getItem('Products');
+
+    // if the first time we visit the page, there will not be an array of objects inside the local storage so we should handle it here:
+    if (data !== null) {
+
+        // convert data back into a normal array of objects 
+        let objData = JSON.parse(data);
+        Prodect.allProdect = objData;
+        renderImages();
+
+    }
+}
+
+
+
+getDataProducts();
+
+
